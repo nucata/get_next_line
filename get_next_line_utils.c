@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:47 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/15 16:08:37 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/15 19:32:54 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*j_substr(char *s1, size_t start, size_t end)
 	char	*new;
 	size_t	ls1;
 	size_t	new_len;
-	int		i;
+	size_t	i;
 
 	ls1 = len(s1);
 	new_len = ls1 - start;
@@ -95,6 +95,5 @@ char	*j_substr(char *s1, size_t start, size_t end)
 		i++;
 	}
 	new[i] = '\0';
-	free(s1);
 	return (new);
 }

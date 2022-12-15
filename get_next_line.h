@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:31 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/15 16:09:06 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/15 20:46:44 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stddef.h>
 
 char	*get_next_line(int fd);
+char	*get_cache(char *cache, int index);
+char	*get_txt(int fd, char *cache);
 size_t	len(char *s);
 char	*j_strchr(char *s, char c);
 char	*j_strjoin(char *s1, char *s2);
