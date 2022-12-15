@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:47 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/15 15:58:45 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/15 16:08:37 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@ size_t	len(char *s)
 	while (s && s[i])
 		i++;
 	return (i);
+}
+
+int	indexof(char *s1, char c)
+{
+	int	i;
+
+	if (!s1)
+		return (-2);
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 char	*j_strchr(char *s, char c)
