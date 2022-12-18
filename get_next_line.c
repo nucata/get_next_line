@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:39 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/15 20:45:39 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 12:48:10 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char	*get_cache(char *cache, int index)
 	int		new_len;
 	int		i;
 
-	new_len = len(cache) - (index + 1);
-	new = malloc((new_len + 1) * sizeof(char));
+	new_len = len(cache) - index;
+	new = malloc(new_len * sizeof(char));
 	if (!new)
 		return (NULL);
 	i = 0;
-	while (cache[index + 1 + i])
+	while (cache[index + i])
 	{
-		new[i] = cache[index + 1 + i];
+		new[i] = cache[index + i];
 		i++;
 	}
 	free(cache);
@@ -58,6 +58,18 @@ char	*get_txt(int fd, char *cache)
 	return (cache);
 }
 
+char	*get_line(char *cache)
+{
+	size_t	length;
+
+	length = 0;
+	while (cache[length] && cache[length] != '\n' && cache[length] != '\0')
+		length++;
+	if (cache[length] == '\n')
+		length++;
+	return (j_substr(cache, 0, length));
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*cache;
@@ -73,7 +85,7 @@ char	*get_next_line(int fd)
 		cache[0] = '\0';
 	}
 	cache = get_txt(fd, cache);
-	line = j_substr(cache, 0, indexof(cache, '\n') + 1);
-	cache = get_cache(cache, indexof(cache, '\n'));
+	line = get_line(cache);
+	cache = get_cache(cache, indexof(cache, '\n') + 1);
 	return (line);
 }
