@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:39 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 14:38:34 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:03:19 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*get_cache(char *cache)
 	if (indexof(cache, '\n') < 0)
 	{
 		free(cache);
-		cache = NULL;
 		return (NULL);
 	}
 	i = indexof(cache, '\n') + 1;
@@ -31,7 +30,6 @@ char	*get_cache(char *cache)
 		length++;
 	new = j_substr(cache, i, length);
 	free(cache);
-	cache = NULL;
 	return (new);
 }
 
@@ -42,19 +40,22 @@ char	*get_txt(int fd, char *cache)
 
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
+	{
+		free(cache);
 		return (NULL);
+	}
 	read_status = BUFFER_SIZE;
 	while (indexof(cache, '\n') == -1 && read_status == BUFFER_SIZE)
 	{
 		read_status = read(fd, buff, BUFFER_SIZE);
-		buff[BUFFER_SIZE] = '\0';
-		cache = j_strjoin(cache, buff);
 		if (read_status <= 0)
 		{
 			free(cache);
-			cache = NULL;
+			free(buff);
 			return (NULL);
 		}
+		buff[read_status] = '\0';
+		cache = j_strjoin(cache, buff);
 	}
 	free (buff);
 	return (cache);
