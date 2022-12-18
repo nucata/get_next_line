@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:39 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 13:40:20 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 14:38:34 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ char	*get_txt(int fd, char *cache)
 	if (!buff)
 		return (NULL);
 	read_status = BUFFER_SIZE;
-	while (indexof(cache, '\n')  == -1 && read_status == BUFFER_SIZE)
+	while (indexof(cache, '\n') == -1 && read_status == BUFFER_SIZE)
 	{
 		read_status = read(fd, buff, BUFFER_SIZE);
 		buff[BUFFER_SIZE] = '\0';
 		cache = j_strjoin(cache, buff);
-		if (read_status < 0)
+		if (read_status <= 0)
 		{
 			free(cache);
 			cache = NULL;
@@ -60,12 +60,14 @@ char	*get_txt(int fd, char *cache)
 	return (cache);
 }
 
-char	*get_line(char *cache)
+char	*get_one_line(char *cache)
 {
 	size_t	length;
 
 	length = 0;
-	while (cache[length] && cache[length] != '\n' && cache[length] != '\0')
+	if (cache == NULL)
+		return (NULL);
+	while (cache[length] != '\n' && cache[length] != '\0')
 		length++;
 	if (cache[length] == '\n')
 		length++;
@@ -87,7 +89,7 @@ char	*get_next_line(int fd)
 		cache[0] = '\0';
 	}
 	cache = get_txt(fd, cache);
-	line = get_line(cache);
+	line = get_one_line(cache);
 	cache = get_cache(cache);
 	return (line);
 }
