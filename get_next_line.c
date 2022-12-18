@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:39 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 15:03:19 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:48:18 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ char	*get_txt(int fd, char *cache)
 		read_status = read(fd, buff, BUFFER_SIZE);
 		if (read_status <= 0)
 		{
-			free(cache);
 			free(buff);
+			if (read_status == 0)
+				return (cache);
+			free(cache);
 			return (NULL);
 		}
 		buff[read_status] = '\0';
@@ -66,7 +68,7 @@ char	*get_one_line(char *cache)
 	size_t	length;
 
 	length = 0;
-	if (cache == NULL)
+	if (cache == NULL || !cache[0])
 		return (NULL);
 	while (cache[length] != '\n' && cache[length] != '\0')
 		length++;
