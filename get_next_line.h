@@ -6,12 +6,16 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:31 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 15:55:54 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:34:48 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>
