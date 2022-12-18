@@ -6,30 +6,32 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:39 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 12:48:10 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:34:44 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-char	*get_cache(char *cache, int index)
+char	*get_cache(char *cache)
 {
 	char	*new;
-	int		new_len;
+	int		length;
 	int		i;
 
-	new_len = len(cache) - index;
-	new = malloc(new_len * sizeof(char));
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (cache[index + i])
+	if (indexof(cache, '\n') < 0)
 	{
-		new[i] = cache[index + i];
-		i++;
+		free(cache);
+		cache = NULL;
+		return (NULL);
 	}
+	i = indexof(cache, '\n') + 1;
+	length = 0;
+	while (cache[i + length])
+		length++;
+	new = j_substr(cache, i, length);
 	free(cache);
+	cache = NULL;
 	return (new);
 }
 
@@ -86,6 +88,6 @@ char	*get_next_line(int fd)
 	}
 	cache = get_txt(fd, cache);
 	line = get_line(cache);
-	cache = get_cache(cache, indexof(cache, '\n') + 1);
+	cache = get_cache(cache);
 	return (line);
 }
