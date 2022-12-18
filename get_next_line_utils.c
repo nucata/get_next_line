@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:47 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/15 19:32:54 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:38:58 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ int	indexof(char *s1, char c)
 		i++;
 	}
 	return (-1);
-}
-
-char	*j_strchr(char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (s + i);
-		i++;
-	}
-	return (NULL);
 }
 
 char	*j_strjoin(char *s1, char *s2)

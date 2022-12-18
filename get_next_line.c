@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:39 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 13:34:44 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:40:20 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_txt(int fd, char *cache)
 	if (!buff)
 		return (NULL);
 	read_status = BUFFER_SIZE;
-	while (!j_strchr(cache, '\n') && read_status == BUFFER_SIZE)
+	while (indexof(cache, '\n')  == -1 && read_status == BUFFER_SIZE)
 	{
 		read_status = read(fd, buff, BUFFER_SIZE);
 		buff[BUFFER_SIZE] = '\0';

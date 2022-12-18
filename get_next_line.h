@@ -6,7 +6,7 @@
 /*   By: rdragan <rdragan@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:31 by rdragan           #+#    #+#             */
-/*   Updated: 2022/12/18 13:36:51 by rdragan          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:39:03 by rdragan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*get_cache(char *cache);
 char	*get_line(char *cache);
 char	*get_txt(int fd, char *cache);
 size_t	len(char *s);
-char	*j_strchr(char *s, char c);
 char	*j_strjoin(char *s1, char *s2);
 char	*j_substr(char *s1, size_t start, size_t end);
 int		indexof(char *s1, char c);
