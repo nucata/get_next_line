@@ -13,7 +13,9 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# define FD_MAX 1024
+# ifndef FD_MAX
+#  define FD_MAX 1024
+# endif
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
